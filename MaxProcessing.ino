@@ -1540,7 +1540,7 @@ void TZXProcess() {
   
           //delay(8000);
            noInterrupts();  
-           while(digitalRead(btnStop)==HIGH) {
+           while(readButton(btnStop)==HIGH) {
              //waits until the button Stop is pressed.
              //delay(50);
            }
@@ -2672,5 +2672,3 @@ void ReadUEFHeader() {
 }
 
 #endif
-
-

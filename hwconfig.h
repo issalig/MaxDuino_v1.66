@@ -81,10 +81,19 @@
 #define scrollSpeed   250           //text scroll delay
 #define scrollWait    3000          //Delay before scrolling starts
 
-#ifdef LCDSCREEN16x2
+#if LCD_I2C_ADDR
   #include <Wire.h> 
   #include <LiquidCrystal_I2C.h>
   LiquidCrystal_I2C lcd(LCD_I2C_ADDR,16,2); // set the LCD address to 0x27 for a 16 chars and 2 line display
+  char indicators[] = {'|', '/', '-',0};
+  uint8_t SpecialChar [8]= { 0x00, 0x10, 0x08, 0x04, 0x02, 0x01, 0x00, 0x00 };
+  #define SCREENSIZE 16
+#endif
+
+#ifdef LCD_KEYPAD
+  #include <Wire.h> 
+  #include <LiquidCrystal.h>
+  LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
   char indicators[] = {'|', '/', '-',0};
   uint8_t SpecialChar [8]= { 0x00, 0x10, 0x08, 0x04, 0x02, 0x01, 0x00, 0x00 };
   #define SCREENSIZE 16

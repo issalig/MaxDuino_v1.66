@@ -82,7 +82,22 @@
   #define btnStop       A3            //Stop Button
   #define btnRoot       A4            //Return to SD card root
   // #define btnDelete     A5         //Not implemented this button is for an optional function
+  #ifdef LCD_KEYPAD
+  #define btnMotor      25             //Motor Sense (connect pin to gnd to play, NC for pause)
+  #elif
   #define btnMotor      6             //Motor Sense (connect pin to gnd to play, NC for pause)
+  #endif
+  
+  //pinMode(btnMotor,INPUT_PULLUP);
+/*
+#define btnRIGHT  0
+#define btnUP     1
+#define btnDOWN   2
+#define btnLEFT   3
+#define btnSELECT 4
+#define btnNONE   5
+ */
+
 
 #elif defined(__arm__) && defined(__STM32F1__)
 //
