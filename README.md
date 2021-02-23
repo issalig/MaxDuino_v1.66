@@ -29,6 +29,10 @@ Motor pin is now on 25 (see pinSetup.h)
 
 If you cannot see any digits on LCD, maybe you need to adjust the potentiometer.
 
+- Audio output
+Connect arduino pin (23) to DIN pin (4)
+Connect arduino GND to DIN pin (2)
+
  - Motor
 Connect motor pin (25) to remote pin (1) on DIN
 Connect GND to remote pin (3) on DIN
