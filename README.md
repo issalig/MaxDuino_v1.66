@@ -23,9 +23,9 @@ Motor pin is now on 25 (see pinSetup.h)
 
 - No need for audio amplifier neither audio/dc jacks, just conect to arduino headers to the DIN 5 connector.
 
-- SD card connection http://house4u.com.ua/photos/solar-controller/arduino-SD-sch.jpg
+- SD card connection ![](http://house4u.com.ua/photos/solar-controller/arduino-SD-sch.jpg)
 
-- Keypad pinout https://hackster.imgix.net/uploads/attachments/869013/lcd-keypad-shield-pinout_cAw8K5UwWe.jpg
+- Keypad pinout ![](imgs/keypad_pinout.png)
 
 If you cannot see any digits on LCD, maybe you need to adjust the potentiometer.
 
