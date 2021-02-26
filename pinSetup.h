@@ -88,15 +88,7 @@
   #define btnMotor      6             //Motor Sense (connect pin to gnd to play, NC for pause)
   #endif
   
-  //pinMode(btnMotor,INPUT_PULLUP);
-/*
-#define btnRIGHT  0
-#define btnUP     1
-#define btnDOWN   2
-#define btnLEFT   3
-#define btnSELECT 4
-#define btnNONE   5
- */
+  pinMode(btnMotor,INPUT_PULLUP);
 
 
 #elif defined(__arm__) && defined(__STM32F1__)

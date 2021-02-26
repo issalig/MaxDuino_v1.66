@@ -200,22 +200,29 @@ void(* resetFunc) (void) = 0;//declare reset function at adress 0
 
 void setup() {
 
-#ifdef LCD_I2C_ADDR || LCD_KEYPAD  // i2c module or lcd keypad
+#ifdef SERIALSCREEN
+  Serial.begin(115200);
+#endif
+
+#ifdef LCDSCREEN16x2  // i2c module or lcd keypad
 
 #ifdef LCD_KEYPAD
   lcd.begin(16, 2);                    //Initialise LCD (16x2 type) //not i2c
+  Serial.print(F("Using Keypad"));
 #endif
+
 #ifdef LCD_I2C_ADDR
   lcd.init();                     //Initialise LCD (16x2 type)  i2c
 #endif
 
-  pinMode(10, INPUT);
+  pinMode(10, INPUT);  //not sure what is this used for with keypad
 
-#ifdef LCDSCREEN16x2
+#ifdef LCD_I2C_ADDR
   lcd.backlight();
 #endif
 
   lcd.clear();
+  
 #if (SPLASH_SCREEN)
   lcd.setCursor(0, 0);
   lcd.print(F("Welcome to")); // Set the text at the initilization for LCD Screen (Line 1)
@@ -225,9 +232,7 @@ void setup() {
   //    lcd.createChar(0, SpecialChar);
 #endif
 
-#ifdef SERIALSCREEN
-  Serial.begin(115200);
-#endif
+
 
 #ifdef OLED1306
   //u8g.setRot180();  // Maybe you dont need this one, depends on how the display is mounted
@@ -392,17 +397,15 @@ int readButton(int button)
   if (button == btnMotor) val = digitalRead(button);
   else if (readBtn == button) val = LOW;
 
-  /*
-  if (val == LOW) {
-    Serial.print(readBtn);
-    Serial.print(" - ");
-    Serial.print(button);
-    Serial.print(" - ");
-    Serial.print(adc_key);
-    Serial.print(" - ");
-    Serial.println(val);
-  }*/
-  
+
+  if (button == btnMotor) {
+    //lcd.clear();  
+    lcd.setCursor(12,0);
+    if (val==HIGH)    
+      lcd.print(F("*"));
+    else lcd.print(F(" "));
+  }
+
   return val;
 #else
 return digitalRead(button);
@@ -1716,6 +1719,8 @@ void scrollText(char* text) {
 void printtext2F(const char* text, int l) {  //Print text to screen.
 
 #ifdef SERIALSCREEN
+  Serial.print(l);
+  Serial.print(" ");
   Serial.println(reinterpret_cast <const __FlashStringHelper *> (text));
 #endif
 
@@ -1789,6 +1794,8 @@ void printtext2F(const char* text, int l) {  //Print text to screen.
 void printtextF(const char* text, int l) {  //Print text to screen.
 
 #ifdef SERIALSCREEN
+  Serial.print(l);
+  Serial.print(" ");
   Serial.println(reinterpret_cast <const __FlashStringHelper *> (text));
 #endif
 
@@ -1862,7 +1869,10 @@ void printtextF(const char* text, int l) {  //Print text to screen.
 void printtext(char* text, int l) {  //Print text to screen.
 
 #ifdef SERIALSCREEN
+  Serial.print(l);
+  Serial.print(" ");
   Serial.println(text);
+  
 #endif
 
 #ifdef LCDSCREEN16x2

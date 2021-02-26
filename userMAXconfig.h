@@ -88,7 +88,7 @@ byte skip2A = 1;                        // Pause on for BLK:2A
 #define BLOCKMODE                   // REW or FF a block when in pause and Play to select it 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//#define SPLASH_SCREEN   1  // Displays the logo and welcome text at the initialization and remains until a button is pressed.
+#define SPLASH_SCREEN   1  // Displays the logo and welcome text at the initialization and remains until a button is pressed.
 #define TIMEOUT_RESET   60 // Timeout for reset tzxduino (without pause or play activated), comment to not reset.
 //#define BLOCK_EEPROM_PUT            // must be disabled if loading many turbo short blocks, as in Amstrad cpc demo Breaking Baud
 #define BLOCKID_INTO_MEM              // enable for blockid recording and later rewinding if EEPROM_PUT is disabled.
