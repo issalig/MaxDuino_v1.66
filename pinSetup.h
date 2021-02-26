@@ -37,22 +37,33 @@
   //#define WRITE_HIGH              gpio_write_bit(GPIOA, 9, HIGH)
       
 #else  //__AVR_ATmega328P__
-  //#define MINIDUINO_AMPLI     // For A.Villena's Miniduino new design
-  #define outputPin           9
-  #ifdef MINIDUINO_AMPLI
-    #define INIT_OUTPORT         DDRB |= B00000011                              // pin8+ pin9 es el bit0-bit1 del PORTB 
-    #define WRITE_LOW           (PORTB &= B11111101) |= B00000001               // pin8+ pin9 , bit0- bit1 del PORTB
-    #define WRITE_HIGH          (PORTB |= B00000010) &= B11111110               // pin8+ pin9 , bit0- bit1 del PORTB  
-  //  #define WRITE_LOW           PORTB = (PORTB & B11111101) | B00000001         // pin8+ pin9 , bit0- bit1 del PORTB
-  //  #define WRITE_HIGH          PORTB = (PORTB | B00000010) & B11111110         // pin8+ pin9 , bit0- bit1 del PORTB 
-  #else
-    #define INIT_OUTPORT         DDRB |=  _BV(1)         // El pin9 es el bit1 del PORTB
-    #define WRITE_LOW           PORTB &= ~_BV(1)         // El pin9 es el bit1 del PORTB
-    #define WRITE_HIGH          PORTB |=  _BV(1)         // El pin9 es el bit1 del PORTB
-  #endif
+//  //#define MINIDUINO_AMPLI     // For A.Villena's Miniduino new design
+//  #define outputPin           9
+//  #ifdef MINIDUINO_AMPLI
+//    #define INIT_OUTPORT         DDRB |= B00000011                              // pin8+ pin9 es el bit0-bit1 del PORTB 
+//    #define WRITE_LOW           (PORTB &= B11111101) |= B00000001               // pin8+ pin9 , bit0- bit1 del PORTB
+//    #define WRITE_HIGH          (PORTB |= B00000010) &= B11111110               // pin8+ pin9 , bit0- bit1 del PORTB  
+//  //  #define WRITE_LOW           PORTB = (PORTB & B11111101) | B00000001         // pin8+ pin9 , bit0- bit1 del PORTB
+//  //  #define WRITE_HIGH          PORTB = (PORTB | B00000010) & B11111110         // pin8+ pin9 , bit0- bit1 del PORTB 
+//  #else
+//    #define INIT_OUTPORT         DDRB |=  _BV(1)         // El pin9 es el bit1 del PORTB
+//    #define WRITE_LOW           PORTB &= ~_BV(1)         // El pin9 es el bit1 del PORTB
+//    #define WRITE_HIGH          PORTB |=  _BV(1)         // El pin9 es el bit1 del PORTB
+//  #endif
 
 // pin 0-7 PortD0-7, pin 8-13 PortB0-5, pin 14-19 PortC0-5
 
+  #define outputPin           3 //PD2 -> PortD bit3
+  #ifdef MINIDUINO_AMPLI
+    #define INIT_OUTPORT         DDRD |= B00000011                              // pin8+ pin9 es el bit0-bit1 del PORTD
+    #define WRITE_LOW           (PORTD &= B11111101) |= B00000001               // pin8+ pin9 , bit0- bit1 del PORTD
+    #define WRITE_HIGH          (PORTD |= B00000010) &= B11111110               // pin8+ pin9 , bit0- bit1 del PORTD
+  #else
+    #define INIT_OUTPORT         DDRD |=  _BV(3)         // El pin3 es el bit3 del PORTD
+    #define WRITE_LOW           PORTD &= ~_BV(3)         // El pin3 es el bit3 del PORTD
+    #define WRITE_HIGH          PORTD |=  _BV(3)         // El pin3 es el bit3 del PORTD
+  #endif
+//pin2 is PD2
 /*
 #ifdef rpolarity 
   #define WRITE_LOW           PORTB &= ~_BV(1)        // El pin9 es el bit1 del PORTB
@@ -240,6 +251,12 @@
   digitalWrite(btnRoot, HIGH); 
    
 #else  //__AVR_ATmega328P__
+
+  #define btnMotor      2             //Motor Sense (connect pin to gnd to play, NC for pause)
+  //PD2
+  
+  pinMode(btnMotor,INPUT_PULLUP);
+/*
   //pinMode(btnPlay,INPUT_PULLUP);  // Not needed, default is INPUT (0)
 //  digitalWrite(btnPlay,HIGH); // Wrte for INPUT_PULLUP if input type is only INPUT
   PORTC |= _BV(3);
@@ -263,4 +280,5 @@
   //pinMode(btnRoot, INPUT_PULLUP);  // Not needed, default is INPUT (0)
 //  digitalWrite(btnRoot, HIGH); 
   PORTD |= _BV(btnRoot);
+  */
 #endif

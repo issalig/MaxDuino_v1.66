@@ -8,14 +8,14 @@
 #define DIRECT_RECORDING
 #define ZX81SPEEDUP
 #define ID19REW                           // trace id19 block for zx81 .tzx to be rewinded
-#define tapORIC
-    #define ORICSPEEDUP
-#define Use_CAS                           // .cas files playback on MSX / Dragon / CoCo Tandy computers
-    #define Use_DRAGON
-        #define Use_Dragon_sLeader        // short Leader of 0x55 allowed for loading TOSEC files
-#define Use_UEF                           // .uef files playback on BBC Micro / Electron / Atom computers
-    #define Use_c112                      // integer gap chunk for .uef
-    #define Use_hqUEF                     // .hq.uef files playback on BBC Micro / Electron / Atom computers
+//#define tapORIC
+//    #define ORICSPEEDUP
+//#define Use_CAS                           // .cas files playback on MSX / Dragon / CoCo Tandy computers
+//    #define Use_DRAGON
+//        #define Use_Dragon_sLeader        // short Leader of 0x55 allowed for loading TOSEC files
+//#define Use_UEF                           // .uef files playback on BBC Micro / Electron / Atom computers
+//    #define Use_c112                      // integer gap chunk for .uef
+//    #define Use_hqUEF                     // .hq.uef files playback on BBC Micro / Electron / Atom computers
         #define Use_c104                  // defined tape format data block: data bits per packet/parity/stop bits    
         //#define Use_c114                // security cycles replaced with carrier tone
         //#define Use_c116                // floating point gap chunk for .hq.uef
@@ -45,7 +45,7 @@ byte skip2A = 1;                        // Pause on for BLK:2A
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Set defines for various types of screen
 
-#define SERIALSCREEN              // For testing and debugging 
+//#define SERIALSCREEN              // For testing and debugging 
 
 //#define LCD_I2C_ADDR    0x27        // Set the i2c address of your 1602LCD usually 0x27
 #define LCDSCREEN16x2               // Set if you are using a 1602 LCD screen
